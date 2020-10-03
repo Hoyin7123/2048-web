@@ -169,19 +169,22 @@ function pressr(){
     return key=='r';
 }
 
-function bla(kek, ceckode){ //Bullshit Language Assembly basic linear algorithm keypressed function wait to be called
+function invoke_click(button){
+	document.getElementById(button).click();
+}
+
+function bla(direction){ //Bullshit Language Assembly basic linear algorithm keypressed function wait to be called
     let slided=true;
     let ranPushed=false;
     let laststep=initialize();
     laststep=(updateArray(brd, laststep));
     let undo=false;
-    if(kek=='a' || ceckode ===  LEFT_ARROW){
+    if(direction == 'left'){
         laststep=(updateArray(laststep, brd));
         console.table(laststep);
         slide(0);
-        //document.getElementById("left").style.backgroundColor = "yellow";
     } else
-    if(kek=='s' || ceckode ===  DOWN_ARROW){
+    if(direction == 'down'){
         laststep=(updateArray(brd, laststep));
         console.table(laststep);
         slide(1);
@@ -189,7 +192,7 @@ function bla(kek, ceckode){ //Bullshit Language Assembly basic linear algorithm 
         console.table(brd);
         console.table(laststep);
     } else
-    if(kek=='d' || ceckode ===  RIGHT_ARROW){
+    if(direction == 'right'){
         laststep=(updateArray(brd, laststep));
         console.table(laststep);
         slide(2);
@@ -197,7 +200,7 @@ function bla(kek, ceckode){ //Bullshit Language Assembly basic linear algorithm 
         console.table(brd);
         console.table(laststep);
     } else
-    if(kek=='w' || ceckode ===  UP_ARROW){
+    if(direction == 'up'){
         laststep=(updateArray(brd, laststep));
         console.table(laststep);
         slide(3);
@@ -215,7 +218,20 @@ function bla(kek, ceckode){ //Bullshit Language Assembly basic linear algorithm 
 }
 
 function keyPressed(){
-    bla(key, keyCode);
+    if(key=='a' || keyCode ===  LEFT_ARROW){
+    	invoke_click('left');
+    } else
+    if(key=='d' || keyCode ===  RIGHT_ARROW){
+    	invoke_click('right');
+    } else
+    if(key=='w' || keyCode ===  UP_ARROW){
+    	invoke_click('up');
+    } else
+    if(key=='s' || keyCode ===  DOWN_ARROW){
+    	invoke_click('down');
+    } else {
+    	slided = false;
+    }
 }
 
 function drawBrd(){  //cor
